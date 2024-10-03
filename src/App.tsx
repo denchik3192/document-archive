@@ -3,7 +3,6 @@ import { useState } from 'react';
 import './App.css';
 import {
   ArrowDownToLine,
-  Camera,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -12,6 +11,7 @@ import {
   FilePlus2,
   Hourglass,
   RotateCw,
+  Search,
   UserRound,
   X,
 } from 'lucide-react';
@@ -22,102 +22,117 @@ import {
   Tfoot,
   Tr,
   Th,
-  Td,
   TableCaption,
   TableContainer,
   Flex,
   Select,
-  Button,
   Input,
   Heading,
+  InputGroup,
+  InputRightElement,
+  Button,
+  Td,
 } from '@chakra-ui/react';
+import Filters from './components/Filters';
+import ContainerWrapper from './components/Container';
 
 function App() {
   return (
     <>
-      <Heading>Архив документов</Heading>
-      <div>
-        <Input placeholder="Select Date" size="md" type="datetime-local" />
-        <Button
-          size={'sm'}
-          leftIcon={<Hourglass name="hourglass" />}
-          colorScheme="teal"
-          variant="solid">
-          В обработке
-        </Button>
-        <Button
-          size={'sm'}
-          leftIcon={<CircleCheckBig name="ok" />}
-          colorScheme="teal"
-          variant="outline">
-          Обработана
-        </Button>
-        <Button size={'sm'} leftIcon={<X name="x" />} colorScheme="teal" variant="outline">
-          Отклонена
-        </Button>
-        <Button
-          size={'sm'}
-          leftIcon={<Hourglass name="hourglass" />}
-          colorScheme="teal"
-          variant="solid">
-          Сегодня
-        </Button>
-        <Button
-          size={'sm'}
-          leftIcon={<CircleCheckBig name="ok" />}
-          colorScheme="teal"
-          variant="outline">
-          Неделя
-        </Button>
-        <Button size={'sm'} leftIcon={<X name="x" />} colorScheme="teal" variant="outline">
-          месяц
-        </Button>
-      </div>
-      <TableContainer>
-        <Table variant="simple">
-          <TableCaption></TableCaption>
-          <Thead background={'pink'} color={'white'}>
-            <Tr>
-              <Th>Дата</Th>
-              <Th>Статус</Th>
-              <Th isNumeric>Номер документа</Th>
-              <Th>Вид документа</Th>
-              <Th>Имя организации</Th>
-              <Th>Налоговый период</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            <Tr>
-              <Th>26.08.2023</Th>
-              <Th>
-                <Hourglass />
-              </Th>
-              <Th isNumeric>256</Th>
-              <Th>Входящий</Th>
-              <Th>ООО DICKPIC</Th>
-              <Th>1Q</Th>
-            </Tr>
-          </Tbody>
-          <Tfoot>
-            <Tr>
-              <Flex alignItems={'center'}>
-                Строк на странице
-                <Select border={'none'}>
-                  <option value="option1">30</option>
-                  <option value="option2">15</option>
-                  <option value="option3">5</option>
-                </Select>
-                <Flex>
-                  <ChevronLeft />
-                  <ChevronRight />
+      <ContainerWrapper>
+        <Heading>Архив документов</Heading>
+        <InputGroup w={'400px'}>
+          <InputRightElement pointerEvents="none">
+            <Search color="grey" />
+          </InputRightElement>
+          <Input size={'sm'} />
+        </InputGroup>
+      </ContainerWrapper>
+
+      <ContainerWrapper>
+        <Filters />
+      </ContainerWrapper>
+
+      <ContainerWrapper>
+        <TableContainer>
+          <Table variant="simple" size={'sm'}>
+            <TableCaption></TableCaption>
+            <Thead background={'teal'}>
+              <Tr>
+                <Th>Дата</Th>
+                <Th>Статус</Th>
+                <Th>Номер документа</Th>
+                <Th>Вид документа</Th>
+                <Th>Имя организации</Th>
+                <Th>Налоговый период</Th>
+                <Th>
+                  <Button
+                    size={'sm'}
+                    height={'5'}
+                    leftIcon={<RotateCw size={16} />}
+                    variant={'outline'}
+                    border={'none'}>
+                    Обновить
+                  </Button>
+                </Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              <Tr>
+                <Td>26.08.2023</Td>
+                <Td>
+                  <Hourglass color="grey" />
+                </Td>
+                <Td>256</Td>
+                <Td>Входящий</Td>
+                <Td>ООО DICKPIC</Td>
+                <Td>1Q</Td>
+                <Td></Td>
+              </Tr>
+              <Tr>
+                <Td>26.08.2023</Td>
+                <Td>
+                  <Hourglass color="grey" />
+                </Td>
+                <Td>256</Td>
+                <Td>Входящий</Td>
+                <Td>ООО DICKPIC</Td>
+                <Td>1Q</Td>
+                <Td></Td>
+              </Tr>
+              <Tr>
+                <Td>26.08.2023</Td>
+                <Td>
+                  <X color="red" />
+                </Td>
+                <Td>256</Td>
+                <Td>Входящий</Td>
+                <Td>ООО DICKPIC</Td>
+                <Td>1Q</Td>
+                <Td></Td>
+              </Tr>
+            </Tbody>
+            <Tfoot>
+              <Tr>
+                <Flex alignItems={'center'}>
+                  Строк на странице
+                  <Select border={'none'}>
+                    <option value="option1">30</option>
+                    <option value="option2">15</option>
+                    <option value="option3">5</option>
+                  </Select>
+                  <Flex>
+                    <ChevronLeft />
+                    <ChevronRight />
+                  </Flex>
                 </Flex>
-              </Flex>
-            </Tr>
-          </Tfoot>
-        </Table>
-      </TableContainer>
-      <Camera />
-      <Hourglass />
+              </Tr>
+            </Tfoot>
+          </Table>
+        </TableContainer>
+      </ContainerWrapper>
+
+      {/* <Hourglass />
       <ArrowDownToLine />
       <X fill="red" />
       <CircleCheckBig />
@@ -127,6 +142,7 @@ function App() {
       <ChevronUp />
       <UserRound />
       <FilePlus2 />
+      <Search /> */}
     </>
   );
 }
