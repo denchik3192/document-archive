@@ -35,19 +35,15 @@ import {
 } from '@chakra-ui/react';
 import Filters from './components/Filters';
 import ContainerWrapper from './components/Container';
+import ApplicationForm from './components/ApplicationForm';
 
 function App() {
   return (
     <>
       <ContainerWrapper>
         <Heading>Архив документов</Heading>
-        <InputGroup w={'400px'}>
-          <InputRightElement pointerEvents="none">
-            <Search color="grey" />
-          </InputRightElement>
-          <Input size={'sm'} />
-        </InputGroup>
       </ContainerWrapper>
+      <ApplicationForm />
 
       <ContainerWrapper>
         <Filters />
@@ -57,7 +53,7 @@ function App() {
         <TableContainer>
           <Table variant="simple" size={'sm'}>
             <TableCaption></TableCaption>
-            <Thead background={'teal'}>
+            <Thead bgColor={'#ADD8E6'}>
               <Tr>
                 <Th>Дата</Th>
                 <Th>Статус</Th>
