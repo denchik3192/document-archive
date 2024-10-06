@@ -1,27 +1,13 @@
-import { Badge, Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
-import s from './application.module.css';
-import React, { useState } from 'react';
-import ContainerWrapper from './Container';
+import { Box, Flex } from '@chakra-ui/react';
+import s from './documents.module.css';
+import React from 'react';
 import { ArrowDownToLine, Eye, File } from 'lucide-react';
-import Documents from './Documents';
 
-const ApplicationForm: React.FC = () => {
-  const [date, setDate] = useState(new Date().toLocaleDateString());
-
+const Documents: React.FC = () => {
   return (
     <>
-      <ContainerWrapper>
-        <Flex alignItems={'center'} mb={8}>
-          <Badge colorScheme="green" variant="outline">
-            NEW
-          </Badge>
-          <Box ml={10}>{date}</Box>
-          <Button ml={'auto'} px={10} color={'orange'} variant="outline" borderColor={'orange'}>
-            Редактировать
-          </Button>
-        </Flex>
-
-        {/* <Box mb={12}>
+      <Box position={'relative'}>
+        <Box mb={12}>
           <Flex>
             <span className={s.amountOfFiles}>10 файлов</span>
             <div className={s.arrow}>
@@ -80,21 +66,10 @@ const ApplicationForm: React.FC = () => {
               transition="transform 0.3s"
             />
           </Box>
-        </Box> */}
-
-        <Documents />
-
-        <Heading size={'sm'} color={'grey'} mb={4}>
-          Примечание
-        </Heading>
-        <Text>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique aliquam, aperiam at
-          repellat sapiente cumque officia a delectus ipsa asperiores sequi voluptatum rem, laborum
-          fugiat tempora facere? Doloribus, reprehenderit sequi.
-        </Text>
-      </ContainerWrapper>
+        </Box>
+      </Box>
     </>
   );
 };
 
-export default ApplicationForm;
+export default Documents;

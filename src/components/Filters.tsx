@@ -104,16 +104,20 @@ const Filters: React.FC = () => {
                 <Text mb="8px">Налоговый период</Text>
                 <Select size={'sm'}>
                   <option value="option1">Все</option>
-                  <option value="option2">2 квартал</option>
-                  <option value="option3">3 квартал</option>
+                  <option value="option2">Месяц</option>
+                  <option value="option3">Q1</option>
+                  <option value="option4">Q2</option>
+                  <option value="option5">Q3</option>
+                  <option value="option6">Q4</option>
+                  <option value="option6">Год</option>
                 </Select>
               </div>
               <div style={{ marginRight: '20px' }}>
                 <Text mb="8px">Вид документа</Text>
                 <Select size={'sm'}>
                   <option value="option1">Все</option>
-                  <option value="option2">2Q</option>
-                  <option value="option3">3Q</option>
+                  <option value="option2">Входящий</option>
+                  <option value="option3">Исходящий</option>
                 </Select>
               </div>
               <div style={{ marginRight: '20px' }}>

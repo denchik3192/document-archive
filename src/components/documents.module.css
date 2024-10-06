@@ -5,10 +5,11 @@
 
 .arrow:after {
     position: absolute;
-    left: 160px;
-    top: 175px;
-    width: calc(100% - 196px);
+    left: 130px;
+    top: 10px;
+    width: calc(100% - 130px);
     height: 1px;
     content: '';
     border-bottom: 1px solid grey;
+   
 }

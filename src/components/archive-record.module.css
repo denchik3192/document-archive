@@ -1,0 +1,14 @@
+.amountOfFiles {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.arrow:after {
+  position: absolute;
+  left: 150px;
+  top: 234px;
+  width: calc(100% - 196px);
+  height: 1px;
+  content: '';
+  border-bottom: 1px solid grey;
+}
