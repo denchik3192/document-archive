@@ -20,19 +20,17 @@ const Filters: React.FC = () => {
   return (
     <div style={{ width: '100%' }}>
       <Flex alignItems={'center'}>
-        <Heading
-          size={'m'}
-          color={'orange'}
-          mr={2}
-          cursor={'pointer'}
-          onClick={() => setIsFilterActive(!isFilterActive)}>
-          Фильтр
-        </Heading>
-        {isFilterActive ? (
-          <ChevronUp color={'orange'} style={{ cursor: 'pointer' }} />
-        ) : (
-          <ChevronDown color={'orange'} style={{ cursor: 'pointer' }} />
-        )}
+        <Flex onClick={() => setIsFilterActive(!isFilterActive)}>
+          <Heading size={'m'} color={'orange'} mr={2} cursor={'pointer'}>
+            Фильтр
+          </Heading>
+          {isFilterActive ? (
+            <ChevronUp color={'orange'} style={{ cursor: 'pointer' }} />
+          ) : (
+            <ChevronDown color={'orange'} style={{ cursor: 'pointer' }} />
+          )}
+        </Flex>
+
         <Button variant={'outline'} borderColor={'orange'} color={'orange'} size={'sm'} ml={4}>
           Очистить
         </Button>
@@ -47,10 +45,10 @@ const Filters: React.FC = () => {
         in={isFilterActive}
         animateOpacity
         transition={{ exit: { delay: 0.2 }, enter: { duration: 1 } }}>
-        <Box mt="4" rounded="md" shadow="md">
-          <Flex alignItems={'center'} mb={6}>
+        <Box mt="2" rounded="md" shadow="md">
+          <Flex alignItems={'center'} mb={4}>
             <Box mr={20}>
-              <Text>Период</Text>
+              <Text mb={2}>Период</Text>
               <Flex alignItems={'center'}>
                 <Input maxW={'200px'} placeholder="Select Date" size="sm" type="date" /> -
                 <Input maxW={'200px'} placeholder="Select Date" size="sm" type="date" />
@@ -58,7 +56,7 @@ const Filters: React.FC = () => {
             </Box>
 
             <Box w={'50%'}>
-              <Text>Быстрый переход</Text>
+              <Text mb={2}>Быстрый переход</Text>
               {quickTransition.map((el, id) => (
                 <Button
                   key={id}

@@ -25,7 +25,7 @@ function Archive() {
     <ContainerWrapper>
       <Heading mb={5}>Архив документов</Heading>
       <Filters />
-      <TableContainer mt={8}>
+      <TableContainer mt={6}>
         <Table variant="simple" size={'sm'}>
           <TableCaption></TableCaption>
           <Thead bgColor={'#ADD8E6'}>
