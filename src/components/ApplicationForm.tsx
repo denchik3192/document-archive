@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
+import { Badge, Box, Button, Flex, Heading, Text, Textarea } from '@chakra-ui/react';
 import s from './application.module.css';
 import React, { useState } from 'react';
 import ContainerWrapper from './Container';
@@ -7,6 +7,8 @@ import Documents from './Documents';
 
 const ApplicationForm: React.FC = () => {
   const [date, setDate] = useState(new Date().toLocaleDateString());
+  const [isEdit, setISEdit] = useState<boolean>(false);
+  const [noteValue, setNoteValue] = useState<string>('');
 
   return (
     <>
@@ -16,21 +18,53 @@ const ApplicationForm: React.FC = () => {
             NEW
           </Badge>
           <Box ml={10}>{date}</Box>
-          <Button ml={'auto'} px={10} color={'orange'} variant="outline" borderColor={'orange'}>
-            Редактировать
+          <Button
+            onClick={() => setISEdit(!isEdit)}
+            minW={'200'}
+            ml={'auto'}
+            px={10}
+            color={'orange'}
+            variant="outline"
+            borderColor={'orange'}>
+            {isEdit ? 'Сохранить' : 'Редактировать'}
           </Button>
         </Flex>
-
-        <Documents />
+        {
+          <Box minH={'300px'}>
+            {!isEdit ? (
+              <Documents />
+            ) : (
+              <Flex alignItems={'center'} justifyContent={'center'}>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  height="100%"
+                  p={20}
+                  border={'2px dotted grey'}
+                  m={10}
+                  borderRadius={8}
+                  transition="0.2s ease-in-out"
+                  _hover={{
+                    transform: 'scale(1.1)',
+                    cursor: 'pointer',
+                    transition: '0.18s ease-in',
+                  }}>
+                  <Upload color="grey" size={56} />
+                </Box>
+              </Flex>
+            )}
+          </Box>
+        }
 
         <Heading size={'sm'} color={'grey'} mb={4}>
           Примечание
         </Heading>
-        <Text>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique aliquam, aperiam at
-          repellat sapiente cumque officia a delectus ipsa asperiores sequi voluptatum rem, laborum
-          fugiat tempora facere? Doloribus, reprehenderit sequi.
-        </Text>
+        {!isEdit ? (
+          <Text>{noteValue}</Text>
+        ) : (
+          <Textarea onChange={(e) => setNoteValue(e.target.value)} value={noteValue}></Textarea>
+        )}
       </ContainerWrapper>
     </>
   );
