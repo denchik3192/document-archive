@@ -2,7 +2,7 @@ import { Badge, Box, Button, Flex, Heading, Text, Textarea } from '@chakra-ui/re
 import s from './application.module.css';
 import React, { useState } from 'react';
 import ContainerWrapper from './Container';
-import { ArrowDownToLine, Eye, File, Upload } from 'lucide-react';
+import { ArrowDownToLine, Eye, File, Pencil, Save, Send, Upload, UploadCloud } from 'lucide-react';
 import Documents from './Documents';
 
 const ApplicationForm: React.FC = () => {
@@ -64,6 +64,17 @@ const ApplicationForm: React.FC = () => {
           <Text>{noteValue}</Text>
         ) : (
           <Textarea onChange={(e) => setNoteValue(e.target.value)} value={noteValue}></Textarea>
+        )}
+        {!isEdit && (
+          <Button
+            mt={14}
+            w={'full'}
+            h={'60px'}
+            fontSize={18}
+            colorScheme="green"
+            leftIcon={<Send />}>
+            Отправить заявку
+          </Button>
         )}
       </ContainerWrapper>
     </>

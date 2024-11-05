@@ -23,12 +23,13 @@ function Archive() {
 
   return (
     <ContainerWrapper>
-      <Heading mb={5}>Архив документов</Heading>
+      {/* <Heading mb={5}>Архив документов</Heading> */}
       <Filters />
       <TableContainer mt={6}>
         <Table variant="simple" size={'sm'}>
           <TableCaption></TableCaption>
-          <Thead bgColor={'#ADD8E6'}>
+          <Thead>
+            {/* <Thead bgColor={'#ADD8E6'}> */}
             <Tr>
               <Th>Дата</Th>
               <Th>Статус</Th>

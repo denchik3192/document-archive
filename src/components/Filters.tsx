@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp, CircleCheckBig, Hourglass, Search, X } from 'lucide-react';
+import { ChevronDown, ChevronUp, CircleCheckBig, Gauge, Hourglass, Search, X } from 'lucide-react';
 import {
   Flex,
   Select,
@@ -14,8 +14,45 @@ import {
 import { useState } from 'react';
 
 const Filters: React.FC = () => {
-  const quickTransition: string[] = ['Сегодня', 'Неделя', 'Месяц'];
+  const [activeStatus, setActiveStatus] = useState<number | null>(null);
+  const [activeTransitionButton, setActiveTransitionButton] = useState<number | null>(null);
   const [isFilterActive, setIsFilterActive] = useState<boolean>(true);
+  const statusButtons = [
+    {
+      label: 'В обработке',
+      icon: <Hourglass size={16} color="grey" />,
+      id: 1,
+    },
+    {
+      label: 'Обработана',
+      icon: <CircleCheckBig size={16} color="orange" />,
+      id: 2,
+    },
+    {
+      label: 'Отклонена',
+      icon: <X size={16} color="red" />,
+      id: 3,
+    },
+  ];
+  const quickTransition = [
+    {
+      label: 'Сегодня',
+      id: 1,
+    },
+    {
+      label: 'Неделя',
+      id: 2,
+    },
+    {
+      label: 'Месяц',
+      id: 3,
+    },
+  ];
+
+  const resetFilters = () => {
+    setActiveStatus(null);
+    setActiveTransitionButton(null);
+  };
 
   return (
     <div style={{ width: '100%' }}>
@@ -31,14 +68,20 @@ const Filters: React.FC = () => {
           )}
         </Flex>
 
-        <Button variant={'outline'} borderColor={'orange'} color={'orange'} size={'sm'} ml={4}>
+        <Button
+          onClick={resetFilters}
+          variant={'outline'}
+          borderColor={'orange'}
+          color={'orange'}
+          size={'sm'}
+          ml={4}>
           Очистить
         </Button>
-        <InputGroup w={'300px'} ml={'auto'}>
+        <InputGroup w={'300px'} ml={'auto'} size={'sm'}>
           <InputRightElement pointerEvents="none">
             <Search color="grey" size={20} />
           </InputRightElement>
-          <Input size={'m'} />
+          <Input placeholder="Поиск" />
         </InputGroup>
       </Flex>
       <Collapse
@@ -57,15 +100,18 @@ const Filters: React.FC = () => {
 
             <Box w={'50%'}>
               <Text mb={2}>Быстрый переход</Text>
-              {quickTransition.map((el, id) => (
+
+              {quickTransition.map((el) => (
                 <Button
-                  key={id}
+                  key={el.id}
+                  onClick={() => setActiveTransitionButton(el.id)}
                   size={'sm'}
-                  color={'orange'}
-                  variant="outline"
+                  color={activeTransitionButton === el.id ? 'orange' : 'white'}
+                  variant={activeTransitionButton === el.id ? 'outline' : 'solid'}
+                  // colorScheme={activeTransitionButton === el.id ? 'orange' : undefined}
                   mr={4}
                   borderColor={'orange'}>
-                  {el}
+                  {el.label}
                 </Button>
               ))}
             </Box>
@@ -74,27 +120,18 @@ const Filters: React.FC = () => {
             <Flex flexDirection={'column'}>
               <Text mb={'8px'}>Статус заявки</Text>
               <div>
-                <Button
-                  size={'sm'}
-                  leftIcon={<Hourglass name="hourglass" size={16} color="grey" />}
-                  variant="outline"
-                  mr={4}>
-                  В обработке
-                </Button>
-                <Button
-                  size={'sm'}
-                  leftIcon={<CircleCheckBig name="ok" size={16} color="orange" />}
-                  variant="outline"
-                  mr={4}>
-                  Обработана
-                </Button>
-                <Button
-                  size={'sm'}
-                  leftIcon={<X name="x" size={16} color="red" />}
-                  variant="outline"
-                  mr={4}>
-                  Отклонена
-                </Button>
+                {statusButtons.map((button) => (
+                  <Button
+                    key={button.id}
+                    onClick={() => setActiveStatus(button.id)}
+                    size="sm"
+                    leftIcon={button.icon}
+                    variant={activeStatus === button.id ? 'solid' : 'outline'}
+                    colorScheme={activeStatus === button.id ? 'blue' : undefined}
+                    mr={4}>
+                    {button.label}
+                  </Button>
+                ))}
               </div>
             </Flex>
             <Flex>

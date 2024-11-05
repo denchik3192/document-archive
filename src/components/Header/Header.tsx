@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ContainerWrapper from '../Container';
 import s from './header.module.css';
 import {
+  ArchiveIcon,
+  CalendarDays,
   ChevronDown,
-  EditIcon,
-  ExternalLinkIcon,
+  FilesIcon,
   LogOut,
-  MenuIcon,
-  PlusCircle,
+  Moon,
   PlusCircleIcon,
-  RepeatIcon,
-  User,
+  Sun,
+  SunDim,
   UserRound,
 } from 'lucide-react';
 import {
@@ -21,30 +21,53 @@ import {
   Menu,
   MenuItem,
   MenuList,
-  MenuGroup,
-  MenuDivider,
+  Heading,
   Button,
+  useColorMode,
 } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 function Header() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const pathName = useLocation().pathname.slice(1);
+  const [pageName, setPageName] = useState('');
+  const letters = pageName.split('');
+
+  useEffect(() => {
+    if (pathName === 'application-archive') setPageName('Архив заявок');
+    if (pathName === '') setPageName('Архив документов');
+    if (pathName === 'application-form') setPageName('Новая заявка');
+  }, [pathName]);
+
   return (
     <>
       <header>
         <Flex alignItems={'center'} justifyContent={'space-between'}>
-          <nav>
-            <ul className={s.navList}>
-              <li>
-                <Link to="/">Архив Документов</Link>
-              </li>
-              <li>
-                <Link to="/application-archive">Архив заявок</Link>
-              </li>
-            </ul>
-          </nav>
+          <motion.div
+            key={pathName}
+            initial={{ x: -500, opacity: 0 }} // Начальное состояние: сдвиг вверх и невидимость
+            animate={{ x: 0, opacity: 1 }} // Конечное состояние: исходная позиция и полная видимость
+            transition={{ duration: 0.6, ease: 'easeOut' }} // Параметры анимации
+          >
+            <Heading className={s.navName} size={'lg'}>
+              {pageName}
+            </Heading>
+          </motion.div>
+
           <Flex alignItems={'center'}>
+            <IconButton
+              mr={2}
+              onClick={toggleColorMode}
+              // colorScheme="orange"
+              variant={'outline'}
+              aria-label="theme"
+              size="sm"
+              icon={colorMode === 'light' ? <Moon /> : <SunDim />}
+            />
             <Menu>
-              <ChevronDown />
               <MenuButton
+                size={'sm'}
                 as={IconButton}
                 aria-label="Options"
                 icon={<UserRound size={20} />}
@@ -52,18 +75,15 @@ function Header() {
               />
 
               <MenuList>
-                <MenuItem icon={<PlusCircleIcon />} command="⌘T">
-                  New Tab
-                </MenuItem>
-                <MenuItem icon={<ExternalLinkIcon />} command="⌘N">
-                  New Window
-                </MenuItem>
-                <MenuItem icon={<RepeatIcon />} command="⌘⇧N">
-                  Open Closed Tab
-                </MenuItem>
-                <MenuItem icon={<EditIcon />} command="⌘O">
-                  Open File...
-                </MenuItem>
+                <Link to="/application-form">
+                  <MenuItem icon={<PlusCircleIcon color="grey" />}>Новая заявка</MenuItem>
+                </Link>
+                <Link to="/application-archive">
+                  <MenuItem icon={<FilesIcon color="grey" />}>Архив заявок</MenuItem>
+                </Link>
+                <Link to="/">
+                  <MenuItem icon={<ArchiveIcon color="grey" />}>Архив документов</MenuItem>
+                </Link>
               </MenuList>
             </Menu>
 

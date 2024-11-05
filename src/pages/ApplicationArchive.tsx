@@ -22,7 +22,7 @@ function ApplicationArchive() {
   const numberOfRecords = 5;
   return (
     <ContainerWrapper>
-      <Heading mb={5}>Архив заявок</Heading>
+      {/* <Heading mb={5}>Архив заявок</Heading> */}
       <Filters />
       <TableContainer mt={6}>
         <Table variant="simple" size={'sm'}>
