@@ -16,12 +16,12 @@ const Documents: React.FC = () => {
           </Flex>
           <Box
             mt={8}
+            border={'1px solid transparent'}
             maxW={'140px'}
             minH={'150px'}
             cursor={'pointer'}
             _hover={{
-              bg: '#d3d3d3',
-              borderColor: 'black',
+              border: '1px solid grey',
               '--transform-arrow-eye': 'translateY(-60px)',
             }}
             borderRadius={10}

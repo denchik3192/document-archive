@@ -27,7 +27,7 @@ function ApplicationArchive() {
       <TableContainer mt={6}>
         <Table variant="simple" size={'sm'}>
           <TableCaption></TableCaption>
-          <Thead bgColor={'#ADD8E6'}>
+          <Thead>
             <Tr>
               <Th>Дата</Th>
               <Th>Статус</Th>

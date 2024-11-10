@@ -1,14 +1,26 @@
-import { Badge, Box, Button, Flex, Heading, Text, Textarea } from '@chakra-ui/react';
+import { Badge, Box, Button, Flex, Heading, Spinner, Text, Textarea } from '@chakra-ui/react';
 import s from './application.module.css';
 import React, { useState } from 'react';
 import ContainerWrapper from './Container';
-import { ArrowDownToLine, Eye, File, Pencil, Save, Send, Upload, UploadCloud } from 'lucide-react';
+import { Send, Upload } from 'lucide-react';
 import Documents from './Documents';
+import { useNavigate } from 'react-router-dom';
 
 const ApplicationForm: React.FC = () => {
   const [date, setDate] = useState(new Date().toLocaleDateString());
-  const [isEdit, setISEdit] = useState<boolean>(false);
+  const [isSending, setIsSending] = useState(false);
+  const [isEdit, setISEdit] = useState<boolean>(true);
   const [noteValue, setNoteValue] = useState<string>('');
+  const navigate = useNavigate();
+
+  const sendData = () => {
+    setIsSending(true);
+    // dispatch()
+    setTimeout(() => {
+      setIsSending(false);
+      navigate('/');
+    }, 1000);
+  };
 
   return (
     <>
@@ -25,6 +37,7 @@ const ApplicationForm: React.FC = () => {
             px={10}
             color={'orange'}
             variant="outline"
+            disabled
             borderColor={'orange'}>
             {isEdit ? 'Сохранить' : 'Редактировать'}
           </Button>
@@ -67,13 +80,14 @@ const ApplicationForm: React.FC = () => {
         )}
         {!isEdit && (
           <Button
+            onClick={sendData}
             mt={14}
             w={'full'}
             h={'60px'}
             fontSize={18}
             colorScheme="green"
-            leftIcon={<Send />}>
-            Отправить заявку
+            leftIcon={!isSending ? <Send /> : undefined}>
+            {!isSending ? 'Отправить заявку' : <Spinner />}
           </Button>
         )}
       </ContainerWrapper>
