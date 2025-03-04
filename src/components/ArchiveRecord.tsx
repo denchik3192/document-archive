@@ -1,8 +1,7 @@
-import { Badge, Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
-import s from './archive-record.module.css';
-import React, { useState } from 'react';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
+import React from 'react';
 import ContainerWrapper from './Container';
-import { ArrowDownToLine, Eye, File, Hourglass } from 'lucide-react';
+import { Hourglass } from 'lucide-react';
 import Documents from './Documents';
 
 const ArchiveRecord: React.FC = () => {

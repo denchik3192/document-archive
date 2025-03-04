@@ -1,5 +1,4 @@
 import { Badge, Box, Button, Flex, Heading, Spinner, Text, Textarea } from '@chakra-ui/react';
-import s from './application.module.css';
 import React, { useState } from 'react';
 import ContainerWrapper from './Container';
 import { Send, Upload } from 'lucide-react';
@@ -7,7 +6,7 @@ import Documents from './Documents';
 import { useNavigate } from 'react-router-dom';
 
 const ApplicationForm: React.FC = () => {
-  const [date, setDate] = useState(new Date().toLocaleDateString());
+  const [date] = useState(new Date().toLocaleDateString());
   const [isSending, setIsSending] = useState(false);
   const [isEdit, setISEdit] = useState<boolean>(true);
   const [noteValue, setNoteValue] = useState<string>('');

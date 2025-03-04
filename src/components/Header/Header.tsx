@@ -1,15 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
-import ContainerWrapper from '../Container';
 import s from './header.module.css';
 import {
   ArchiveIcon,
-  CalendarDays,
-  ChevronDown,
   FilesIcon,
   LogOut,
   Moon,
   PlusCircleIcon,
-  Sun,
   SunDim,
   UserRound,
 } from 'lucide-react';
@@ -22,7 +18,6 @@ import {
   MenuItem,
   MenuList,
   Heading,
-  Button,
   useColorMode,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
@@ -32,7 +27,6 @@ function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
   const pathName = useLocation().pathname.slice(1);
   const [pageName, setPageName] = useState('');
-  const letters = pageName.split('');
 
   useEffect(() => {
     if (pathName === 'application-archive') setPageName('Архив заявок');

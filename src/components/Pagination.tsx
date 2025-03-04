@@ -1,4 +1,4 @@
-import { Button, Flex, Text, Stack } from '@chakra-ui/react';
+import { Button, Stack } from '@chakra-ui/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface PaginationProps {

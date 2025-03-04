@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp, CircleCheckBig, Gauge, Hourglass, Search, X } from 'lucide-react';
+import { ChevronDown, ChevronUp, CircleCheckBig, Hourglass, Search, X } from 'lucide-react';
 import {
   Flex,
   Select,

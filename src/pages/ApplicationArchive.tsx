@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Hourglass, RotateCw, X } from 'lucide-react';
+import { Hourglass, RotateCw, X } from 'lucide-react';
 import ContainerWrapper from '../components/Container';
 import Filters from '../components/Filters';
 import {
@@ -10,16 +10,11 @@ import {
   Th,
   TableCaption,
   TableContainer,
-  Flex,
-  Select,
-  Heading,
   Button,
   Td,
-  Box,
 } from '@chakra-ui/react';
 
 function ApplicationArchive() {
-  const numberOfRecords = 5;
   return (
     <ContainerWrapper>
       {/* <Heading mb={5}>Архив заявок</Heading> */}
